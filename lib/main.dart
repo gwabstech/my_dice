@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,17 +17,28 @@ void main() {
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
-        body: const DicePage(),
+        body:   DicePage(),
       ),
     ),
   );
 }
 
-class DicePage extends StatelessWidget {
-  const DicePage({Key? key}) : super(key: key);
+
+class DicePage extends StatefulWidget {
+    const DicePage({Key? key}) : super(key: key);
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+   var leftNumber = 1;
+
+   var rightNumber = 5;
 
   @override
   Widget build(BuildContext context) {
+
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -34,10 +46,15 @@ class DicePage extends StatelessWidget {
           Expanded(
             child: TextButton(
               onPressed: () {
-                print("am clicked");
+                setState((){
+                  leftNumber = 3;
+                  if (kDebugMode) {
+                    print('dice number is $leftNumber');
+                  }
+                });
               },
-              child: const Image(
-                image: AssetImage("images/dice1.png"),
+              child:  Image(
+                image: AssetImage('images/dice$leftNumber.png'),
               ),
             ),
           ),
@@ -45,10 +62,15 @@ class DicePage extends StatelessWidget {
 
             child: TextButton(
               onPressed: (){
-                print("AM clicked again but second btn");
+                setState((){
+                  rightNumber = 2;
+                  if (kDebugMode) {
+                    print('the right number is $rightNumber');
+                  }
+                });
               } ,
-              child: const Image(
-                image: AssetImage("images/dice2.png"),
+              child:  Image(
+                image: AssetImage("images/dice$rightNumber.png"),
               ),
             ),
           ),

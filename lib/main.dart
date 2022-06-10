@@ -30,25 +30,27 @@ class DicePage extends StatelessWidget {
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
-          SizedBox(
-            width: 5,
-          ),
+        children:  <Widget>[
           Expanded(
-            child: Image(
-              image: AssetImage("images/dice1.png"),
+            child: TextButton(
+              onPressed: () {
+                print("am clicked");
+              },
+              child: const Image(
+                image: AssetImage("images/dice1.png"),
+              ),
             ),
           ),
-          SizedBox(
-            width: 5,
-          ),
           Expanded(
-            child: Image(
-              image: AssetImage("images/dice2.png"),
+
+            child: TextButton(
+              onPressed: (){
+                print("AM clicked again but second btn");
+              } ,
+              child: const Image(
+                image: AssetImage("images/dice2.png"),
+              ),
             ),
-          ),
-          SizedBox(
-            width: 5,
           ),
         ],
       ),

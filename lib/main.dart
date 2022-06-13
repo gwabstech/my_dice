@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+
 
 void main() {
   return runApp(
@@ -17,59 +18,55 @@ void main() {
           centerTitle: true,
           backgroundColor: Colors.white,
         ),
-        body:   DicePage(),
+        body: const DicePage(),
       ),
     ),
   );
 }
 
-
 class DicePage extends StatefulWidget {
-    const DicePage({Key? key}) : super(key: key);
+  const DicePage({Key? key}) : super(key: key);
 
   @override
   State<DicePage> createState() => _DicePageState();
 }
 
 class _DicePageState extends State<DicePage> {
-   var leftNumber = 1;
 
-   var rightNumber = 5;
+  var leftNumber = 1;
+  var rightNumber = 5;
+  void generateAndChangeFace() {
+    setState(() {
+      leftNumber = Random().nextInt(6) + 1;
+      rightNumber = Random().nextInt(6) + 1;
+
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:  <Widget>[
+        children: <Widget>[
           Expanded(
             child: TextButton(
               onPressed: () {
-                setState((){
-                  leftNumber = 3;
-                  if (kDebugMode) {
-                    print('dice number is $leftNumber');
-                  }
-                });
+               generateAndChangeFace();
               },
-              child:  Image(
+              child: Image(
                 image: AssetImage('images/dice$leftNumber.png'),
               ),
             ),
           ),
           Expanded(
-
             child: TextButton(
-              onPressed: (){
-                setState((){
-                  rightNumber = 2;
-                  if (kDebugMode) {
-                    print('the right number is $rightNumber');
-                  }
-                });
-              } ,
-              child:  Image(
+              onPressed: () {
+                generateAndChangeFace();
+              },
+              child: Image(
                 image: AssetImage("images/dice$rightNumber.png"),
               ),
             ),
@@ -79,3 +76,4 @@ class _DicePageState extends State<DicePage> {
     );
   }
 }
+
